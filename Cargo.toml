@@ -1,0 +1,20 @@
+[package]
+name = "weather-rustler-api"
+version = "0.1.0"
+edition = "2021"
+
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+libsqlite3-sys = { version = "0.28.0", features = ["bundled"] }
+# sqlite = "0.34.0"
+dotenvy = "0.15.7"
+tokio = {version = "1.37.0", features = ["full"]}
+# sqlx = {version = "0.7.4", features = ["runtime-tokio-native-tls", "sqlite"]}
+serde = { version="1.0.198", features = ["derive"]}
+serde_json = "1.0.116"
+rocket = {version = "0.5.0", features = ["json"]}
+diesel = {version = "2.1.6", features = ["sqlite", "chrono", "time"]}
+chrono = {version = "0.4.38", features = ["serde"] }
+serde_derive = "1.0.198"
