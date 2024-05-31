@@ -5,9 +5,9 @@ diesel::table! {
         id -> Integer,
         timestamp -> Timestamp,
         source_device -> Integer,
-        humidity -> Nullable<Float>,
-        temperature -> Nullable<Float>,
-        pressure -> Nullable<Float>,
-        time_frame -> Nullable<Text>,
+        humidity -> Float,
+        temperature -> Float,
+        pressure -> Float,
+        time_frame -> Text,
     }
 }

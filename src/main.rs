@@ -5,11 +5,13 @@ extern crate diesel;
 
 mod models;
 mod schema;
+mod datautils;
 
 use std::env;
 
 use crate::models::*;
 use crate::models::WeatherData;
+use crate::datautils::*;
 
 use diesel::prelude::*;
 use diesel::SqliteConnection;
@@ -30,14 +32,13 @@ pub struct StatusResponse {
 }
 
 
-
 #[post("/weatherdata", format="json", data = "<new_weather_data_point>")]
 pub fn log_data_point(new_weather_data_point: Json<NewWeatherDataPoint>) -> Json<StatusResponse> {
     dotenv().ok();
     let connection_path = env::var("DATABASE_URL").expect("DATABASE_URL must be set in a .env config file!");
     let mut connection = SqliteConnection::establish(&connection_path).expect("Couldn't connect to database.");
 
-    // let mut db_conn = || {SqliteConnection::establish("/home/walter/Projects/Rust/weather-rustler-api/data/weatherdata.db").expect("Couldn't connect to database.")};
+    get_max_timestamps(&mut connection);
 
     let nwp = new_weather_data_point.into_inner();
     println!("{:?}", nwp);

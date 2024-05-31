@@ -18,10 +18,10 @@ pub struct WeatherData {
     pub id: i32,
     pub timestamp: NaiveDateTime,
     pub source_device: i32,
-    pub humidity: Option<f32>,
-    pub temperature: Option<f32>,
-    pub pressure: Option<f32>,
-    pub time_frame: Option<String>
+    pub humidity: f32,
+    pub temperature: f32,
+    pub pressure: f32,
+    pub time_frame: String,
 }
 
 #[derive(Queryable, Insertable, Serialize, Deserialize, Debug)]
@@ -31,5 +31,5 @@ pub struct NewWeatherDataPoint {
     pub humidity: f32,
     pub temperature: f32,
     pub pressure: f32,
-    pub time_frame: Option<String>
+    // pub time_frame: String,
 }
